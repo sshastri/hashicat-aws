@@ -123,8 +123,11 @@ resource "aws_instance" "hashicat" {
   vpc_security_group_ids      = [aws_security_group.hashicat.id]
 
   tags = {
-    Name = "${var.prefix}-hashicat-instance"
+    Name       = "${var.prefix}-hashicat-instance"
+    Billable   = "true"
+    Department = "devops"
   }
+  
 }
 
 # We're using a little trick here so we can run the provisioner without
