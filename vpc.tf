@@ -1,5 +1,6 @@
 module "vpc" {
-  source = "../../"
+  source  = "app.terraform.io/ise/vpc/aws"
+  version = "2.55.0"
 
   name = "simple-example"
 
