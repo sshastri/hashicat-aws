@@ -123,8 +123,11 @@ resource "aws_instance" "hashicat" {
   vpc_security_group_ids      = [aws_security_group.hashicat.id]
 
   tags = {
-    Name = "${var.prefix}-hashicat-instance"
+    Name       = "${var.prefix}-hashicat-instance"
+    Billable   = "true"
+    Department = "devops"
   }
+  
 }
 
 # We're using a little trick here so we can run the provisioner without
@@ -161,6 +164,7 @@ resource "null_resource" "configure-cat-app" {
   provisioner "remote-exec" {
     inline = [
       "sudo add-apt-repository universe",
+      "sudo apt -y upgrade",
       "sudo apt -y update",
       "sudo apt -y install apache2",
       "sudo systemctl start apache2",
